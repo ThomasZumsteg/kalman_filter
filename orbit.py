@@ -20,18 +20,18 @@ def simple_step(delta_t):
 
         state = tuple( update_pos ) + tuple( velocity )
 
-states = []
+if __name__ == '__main__':
+    states = []
 
-for i, state in enumerate(simple_step(0.5)):
-    states.append(state)
-    if i > 50:
-        break
+    for i, state in enumerate(simple_step(0.5)):
+        states.append(state)
+        if i > 50:
+            break
 
-fig, ax = plt.subplots()
-x = tuple(s[0] for s in states)
-y = tuple(s[1] for s in states)
-ax.plot(x, y, 'bo')
-plt.grid(True)
-plt.axis('equal')
-plt.show()
-
+    fig, ax = plt.subplots()
+    x = tuple(s[0] for s in states)
+    y = tuple(s[1] for s in states)
+    ax.plot(x, y, 'bo')
+    plt.grid(True)
+    plt.axis('equal')
+    plt.show()
