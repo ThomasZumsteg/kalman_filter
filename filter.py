@@ -18,6 +18,7 @@ def derivative(state, t):
     else:
         return [vx, vy, 0, -GRAVITY]
 
+            #    x   y vx vy
 initial_state = [0, 10, 1, 0]
 time_steps = np.linspace(0, 10, 1000)
 
