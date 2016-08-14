@@ -16,26 +16,21 @@ class Orbit(object):
 
     @property
     def theta(self):
-        return (self.start - time.now()) % (2 * math.pi)
-
-
-class TestOrbit(unittest.TestCase):
-    def setup(self):
-        self.orbit = Orbit()
-
-    def test_orbit(self):
-        self.assertEqual(self.orbit.radius, 10)
+        return (self.start - time.time()) % (2 * math.pi)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run an orbit')
-    mode_parser = parser.add_subparsers(title='unittests', dest='mode')
-    unittest_parser = mode_parser.add_parser('unittest',
-        parents=[parser], add_help=False,
-        help='Run the unittests')
-    run_parser = mode_parser.add_parser('run',
-        parents=[parser], add_help=False,
-        help='Run the simulation')
+    subparser = parser.add_subparsers(help='Program mode', dest='mode')
+    daemon_parser = subparser.add_parser('daemon',
+        parent=[parser],
+        help='Run in daemon mode')
+    run_parser = subparser.add_parser('run',
+        help='Run in foreground')
     args = parser.parse_args()
-    print(args)
-    unittest.main()
+    if args.mode == 'daemon':
+        print('Not implemented yet')
+    elif args.mode == 'run':
+        print('Not implemented yet')
+    else:
+        parser.print_help()
